@@ -1,4 +1,5 @@
 <HomePage>:
+    add_btn: add_btn
     MDBoxLayout:
         orientation: 'vertical'
         padding: ('20dp', '20dp', '20dp', '20dp')
@@ -38,11 +39,54 @@
                 ItemCard:
                 ItemCard:
     MDIconButton:
+        id: add_btn
+        a: 0
+        b: 360
+        canvas.after:
+            Color:
+                rgba: [0.4, 0.4, 0.4, 0.8]
+            Line:
+                # circle: (self.center_x, self.center_y, min(self.width, self.height)/2, 90, 270)
+                circle: (self.center_x, self.center_y, min(self.width, self.height)/2, self.a, self.b)
         icon: 'plus'
+        md_bg_color: [1,1,1,1]
         icon_size: sp(40)
         pos_hint: {'center_x': 0.5,'y': 0.07}
-        md_bg_color: [0,0,0,0.2]
-# ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Subtitle1', 'Subtitle2', 'Body1', 'Body2', 'Button', 'Caption', 'Overline', 'Icon']
+        # md_bg_color: [0,0,0,0.2]
+        on_press:
+            root.new_task()
+
+<NewTaskCard>:
+    task_field: task_field
+    time_field: time_field
+    size_hint: None, None
+    size: dp(300), dp(200)
+    radius: dp(10)
+    canvas.after:
+        Color:
+            rgba: [0.4, 0.4, 0.4, 0.8]
+        Line:
+            width: dp(1)
+            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(10))
+    RelativeLayout:
+        MDBoxLayout:
+            padding: ('20dp', '0dp', '20dp', '20dp')
+            orientation: 'vertical'
+            spacing: '10dp'
+            adaptive_height: True
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            MDTextField:
+                id: task_field
+                hint_text: "Task"
+                on_text: self.text_actions()
+            MDTextField:
+                id: time_field
+                hint_text: "Time"
+                max_text_length: 8
+        MDIconButton:
+            icon: 'close'
+            icon_size: sp(20)
+            pos_hint: {'right': 1.0,'top': 1.0}
 
 <ItemCard@MDCard>:
     size_hint_y: None
