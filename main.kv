@@ -1,0 +1,73 @@
+<HomePage>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: ('20dp', '20dp', '20dp', '20dp')
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            spacing: dp(10)
+            FitImage:
+                sz_val: 60
+                source: ''
+                size_hint: None, None
+                size: dp(self.sz_val),dp(self.sz_val)
+                radius: dp(self.sz_val/2)
+                md_bg_color: [1,0,0,1]
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: ('0dp', '5dp', '0dp', '5dp')
+                MDLabel:
+                    text: "Hello"
+                    font_size: sp(16)
+                    size_hint_y: None
+                    height: dp(16)
+                    font_style: 'Body2'
+                    color: [0.4,0.4,0.4,1]
+                MDLabel:
+                    text: "Igbana Israel"
+                    font_size: sp(25)
+            MDIconButton:
+                icon: 'cog'
+                pos_hint: {'center_y': 0.5}
+        SizedBox:
+            height: dp(30)
+        ScrollView:
+            MDList:
+                id: lst
+                spacing: '18dp'
+                ItemCard:
+                ItemCard:
+    MDIconButton:
+        icon: 'plus'
+        icon_size: sp(40)
+        pos_hint: {'center_x': 0.5,'y': 0.07}
+        md_bg_color: [0,0,0,0.2]
+# ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Subtitle1', 'Subtitle2', 'Body1', 'Body2', 'Button', 'Caption', 'Overline', 'Icon']
+
+<ItemCard@MDCard>:
+    size_hint_y: None
+    height: dp(60)
+    radius: [dp(10)]
+    ripple_behaviour: True
+    canvas.after:
+        Color:
+            rgba: [0.4, 0.4, 0.4, 0.8]
+    
+        Line:
+            width: dp(1)
+            rounded_rectangle: (self.x, self.y, self.width, self.height, dp(10))
+    BoxLayout:
+        spacing: '10dp'
+        padding: ('25dp', '0dp', '25dp', '0dp')
+        MDCheckbox:
+            size_hint: None,None
+            size: dp(20), dp(20)
+            pos_hint: {'center_y': 0.5}
+        MDLabel:
+            text: 'Remind me to do this'
+            color: 0,0,0,0.6
+
+<SizedBox@FloatLayout>:
+    height: 0
+    width: 0
+    size_hint: None if root.width!= 0 else 1, None if root.height!=0 else 1
